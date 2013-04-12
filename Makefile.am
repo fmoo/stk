@@ -1,1 +1,1 @@
-SUBDIRS = src include projects
+SUBDIRS = src include projects doc/doxygen

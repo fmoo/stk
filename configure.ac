@@ -2,7 +2,9 @@
 AC_INIT(STK, 4.4.4, gary@music.mcgill.ca, stk)
 AC_CONFIG_AUX_DIR(config)
 AC_CONFIG_SRCDIR(src/Stk.cpp)
-AC_CONFIG_FILES(Makefile src/Makefile include/Makefile projects/Makefile projects/effects/Makefile projects/examples/Makefile projects/eguitar/Makefile projects/demo/Makefile projects/ragamatic/Makefile)
+AC_CONFIG_FILES(Makefile src/Makefile include/Makefile projects/Makefile projects/effects/Makefile projects/examples/Makefile projects/eguitar/Makefile projects/demo/Makefile projects/ragamatic/Makefile doc/doxygen/Makefile)
+AC_CONFIG_MACRO_DIR([m4])
+
 
 # Enable libtool and automake
 AM_INIT_AUTOMAKE
@@ -21,6 +23,15 @@ AC_PATH_PROG(AR, ar, no)
 if [[ $AR = "no" ]] ; then
     AC_MSG_ERROR("Could not find ar - needed to create a library");
 fi
+
+# Configuration for Doxygen
+DX_HTML_FEATURE([ON])
+DX_PDF_FEATURE([OFF])
+DX_PS_FEATURE([OFF])
+DX_INIT_DOXYGEN([AC_PACKAGE_NAME], [Doxyfile])
+AM_CONDITIONAL([HAVE_DOXYGEN], [test -n "${DX_DOXYGEN}"])
+AM_COND_IF([HAVE_DOXYGEN], [AC_CONFIG_FILES([doc/doxygen/Doxyfile])])
+
 
 # Checks for header files.
 AC_HEADER_STDC
