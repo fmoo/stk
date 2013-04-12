@@ -1,0 +1,15 @@
+# Intermediate build files
+*.o
+*.lo
+*.la
+.libs/
+
+# Build artifacts
+.deps/
+autom4te.cache/
+config.log
+libtool
+aclocal.m4
+
+# Vim stuff
+.*.swp
