@@ -2,7 +2,14 @@
 AC_INIT(STK, 4.4, gary@music.mcgill.ca, stk)
 AC_CONFIG_AUX_DIR(config)
 AC_CONFIG_SRCDIR(src/Stk.cpp)
-AC_CONFIG_FILES(Makefile src/Makefile projects/demo/Makefile projects/effects/Makefile projects/ragamatic/Makefile projects/examples/Makefile projects/examples/libMakefile projects/eguitar/Makefile)
+AC_CONFIG_FILES(Makefile src/Makefile include/Makefile projects/Makefile projects/effects/Makefile projects/examples/Makefile projects/eguitar/Makefile projects/demo/Makefile projects/ragamatic/Makefile)
+
+# Enable libtool and automake
+AM_INIT_AUTOMAKE
+LT_INIT
+AC_ENABLE_STATIC
+AC_ENABLE_SHARED
+
 
 # Fill GXX with something before test.
 AC_SUBST( GXX, ["no"] )
@@ -33,10 +40,6 @@ AC_EGREP_CPP(yes,
 AC_MSG_CHECKING(for RAWWAVE_PATH argument)
 AC_SUBST( rawwaves, $RAWWAVE_PATH )
 AC_MSG_RESULT($RAWWAVE_PATH)
-
-AC_MSG_CHECKING(for INCLUDE_PATH argument)
-AC_SUBST( include, $INCLUDE_PATH )
-AC_MSG_RESULT($INCLUDE_PATH)
 
 # Check for realtime support disable
 AC_MSG_CHECKING(whether to compile realtime support)
